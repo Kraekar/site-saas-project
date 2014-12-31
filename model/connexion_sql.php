@@ -6,12 +6,12 @@
  * Time: 21:52
  */
 
-$databaseDSN = 'mysql:dbname='.$databaseName.';host='.$databaseHost;
+$databaseDSN = 'mysql:dbname='._DBNAME_.';host='._DBHOST_;
 
 try
 {
     //get user informations
-    $bdd = new PDO($databaseDSN, $databaseLogin, $databasePassword, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    $bdd = new PDO($databaseDSN, _DBLOGIN_, _DBPASSWORD_, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch(Exception $e)
 {

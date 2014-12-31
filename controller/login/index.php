@@ -29,21 +29,25 @@ if(isset($_GET['login']) && $_GET['login'] == "try" && isset($_POST['email']) &&
         foreach($donnees as $key => $donnee)
         {
             $_SESSION['ID'] = $donnee['ID'];
-            $_SESSION['pseudo'] = $donnee['pseudo'];
+            /*$_SESSION['pseudo'] = $donnee['pseudo'];
             $_SESSION['email'] = $donnee['email'];
             $_SESSION['password'] = $donnee['password'];
             $_SESSION['corpo_id'] = $donnee['corpo_id'];
             $_SESSION['firstName'] = $donnee['firstName'];
             $_SESSION['lastName'] = $donnee['lastName'];
-            $_SESSION['function'] = $donnee['function'];
+            $_SESSION['function'] = $donnee['function'];*/
 
         }
 
         /* Redirection to administration home page */
-        $host = $_SERVER['HTTP_HOST']."/".$siteWebFolder;
+        $host = $_SERVER['HTTP_HOST']."/"._SITEWEBFOLDER_;
         $page_cible = 'index.php';
         header("Location: http://$host$uri/$page_cible");
         exit;
+    }
+    else
+    {
+
     }
 }
 

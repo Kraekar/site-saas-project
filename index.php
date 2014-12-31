@@ -7,12 +7,13 @@
  */
 
 //load config params
-include_once('config.php');
+require_once('config.php');
 
 //include db connect script
-include_once('model/connexion_sql.php');
-//try to load session, or logout
-include_once('model/handle_session.php');
+require_once('model/connexion_sql.php');
+
+//try to load session if exists, else redirect to login
+require_once('controller/handle_session.php');
 
 if (!isset($_GET['section']) OR $_GET['section'] == 'index')
 {

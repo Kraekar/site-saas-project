@@ -6,9 +6,8 @@
  * Time: 16:48
  */
 
-$siteWebFolder = "site-saas/project";
-
-$databaseHost = "localhost";
-$databaseName = "site-saas-project";
-$databaseLogin = "root";
-$databasePassword = "root";
+define('_SITEWEBFOLDER_', "site-saas/project");
+define('_DBHOST_', "localhost");
+define('_DBNAME_', "site-saas-project");
+define('_DBLOGIN_', "root");
+define('_DBPASSWORD_', "root");
