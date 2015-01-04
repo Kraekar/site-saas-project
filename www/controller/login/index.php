@@ -42,7 +42,7 @@ if(isset($_GET['login']) && $_GET['login'] == "try" && isset($_POST['email']) &&
         /* Redirection to administration home page */
         $host = $_SERVER['HTTP_HOST']."/"._SITEWEBFOLDER_;
         $page_cible = 'index.php';
-        header("Location: http://$host$uri/$page_cible");
+        header("Location: http://$host/$page_cible");
         exit;
     }
     else
