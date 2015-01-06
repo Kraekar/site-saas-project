@@ -7,7 +7,7 @@
  */
 
 //load config params
-require_once('config.php');
+require_once('config/index.php');
 
 //include db connect script
 require_once('model/connexion_sql.php');
