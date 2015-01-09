@@ -12,20 +12,56 @@ require_once('config/index.php');
 //include db connect script
 require_once('model/connexion_sql.php');
 
-//try to load session if exists, else redirect to login
-require_once('controller/handle_session.php');
 
-if (!isset($_GET['section']) OR $_GET['section'] == 'index')
+//special pages without header and footer
+if (!empty($_GET['page']) && $_GET['page'] == 'login')
 {
+include 'controller/login/index.php';
+}
+//classical pages (with header, navbar, footer...), excepted homepage
+elseif (!empty($_GET['page']) && is_file('controller/'.$_GET['page'].'/index.php') && $_GET['page'] !== 'index')
+{
+    //try to load session if exists, else redirect to login
+    require_once('controller/handle_session.php');
+
+
+    //display content
+
     //call common header
     include_once('controller/commonHead/index.php');
     //call navbar
     include_once('controller/commonNavbar/index.php');
     //call top bar
     include_once('controller/commonTopbar/index.php');
-    //call main content
-    include_once('controller/main-dashboard/index.php');
+
+
+    include_once 'controller/'.$_GET['page'].'/index.php';
+
 
     //call common footer (javascript)
     include_once('controller/commonFooter/index.php');
 }
+else //else, display home page
+{
+    //try to load session if exists, else redirect to login
+    require_once('controller/handle_session.php');
+
+
+    //display content
+
+    //call common header
+    include_once('controller/commonHead/index.php');
+    //call navbar
+    include_once('controller/commonNavbar/index.php');
+    //call top bar
+    include_once('controller/commonTopbar/index.php');
+
+    //call homepage
+    include_once('controller/home/index.php');
+
+    //call common footer (javascript)
+    include_once('controller/commonFooter/index.php');
+}
+
+mysql_close();
+

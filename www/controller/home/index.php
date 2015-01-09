@@ -7,4 +7,4 @@
  */
 
 //display the page
-include_once('view/main-dashboard/index.phtml');
+include_once('view/home/index.phtml');
