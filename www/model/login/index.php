@@ -14,7 +14,7 @@ function is_loggable($userEmail, $userPassword)
     global $bdd;
 
     //get user data for regarding email and password
-    $reponse = $bdd->prepare('SELECT * FROM users WHERE users.email = :email AND users.password = :password LIMIT 0,1');
+    $reponse = $bdd->prepare('SELECT users.ID FROM users WHERE users.email = :email AND users.password = :password LIMIT 0,1');
 
     //Execute query with prepared data
     $reponse->execute(array('email' => $userEmail, 'password' => $userPassword));

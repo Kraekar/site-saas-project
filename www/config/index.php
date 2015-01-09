@@ -7,6 +7,7 @@
  */
 
 define('_SITEWEBFOLDER_', "/site-saas/project/www");
+define('_SITEAPPFOLDER_', "/site-saas/project/app");
 define('_DBHOST_', "localhost");
 define('_DBNAME_', "site-saas-project");
 define('_DBLOGIN_', "root");

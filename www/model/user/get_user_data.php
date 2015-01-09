@@ -17,7 +17,7 @@ function get_user_data($userId)
     //Execute query with prepared data
     $reponse->execute(array('userId' => $userId));
 
-    $donnees = $reponse->fetchAll();
+    $donnees = $reponse->fetchAll(PDO::FETCH_ASSOC);
 
     return $donnees;
 }

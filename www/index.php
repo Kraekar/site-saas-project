@@ -13,7 +13,7 @@ require_once('../app/helpers/debugTools.php');
 require_once('config/index.php');
 
 //include db connect script
-require_once('model/connexion_sql.php');
+require_once('../app/helpers/connexion_sql.php');
 
 
 //special pages without header and footer
