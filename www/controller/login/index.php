@@ -11,34 +11,25 @@
 //if user submited the form with filled in fields
 if(isset($_GET['login']) && $_GET['login'] == "try" && isset($_POST['email']) && isset($_POST['password']))
 {
-    //get all personal data from the current user
-    include_once('model/login/get_user_data.php');
+    include_once('model/login/index.php');
 
     //secure input data
     $userEmail = htmlspecialchars($_POST['email']);
     //encrypt password
     $userPassword = sha1($_POST['password']);
-    $donnees = get_user_data($userEmail, $userPassword);
+    //try to fetch user
+    $donnees = is_loggable($userEmail, $userPassword);
 
     //if we found one user, then start session and redirect him on admin homepage
     if(count($donnees) == 1)
     {
         //create session
         session_start();
-
         foreach($donnees as $key => $donnee)
         {
             $_SESSION['ID'] = $donnee['ID'];
-            /*$_SESSION['pseudo'] = $donnee['pseudo'];
-            $_SESSION['email'] = $donnee['email'];
-            $_SESSION['password'] = $donnee['password'];
-            $_SESSION['corpo_id'] = $donnee['corpo_id'];
-            $_SESSION['firstName'] = $donnee['firstName'];
-            $_SESSION['lastName'] = $donnee['lastName'];
-            $_SESSION['function'] = $donnee['function'];*/
-
+            //debug_to_console($donnee);
         }
-
         /* Redirection to administration home page */
         $host = $_SERVER['HTTP_HOST']."/"._SITEWEBFOLDER_;
         $page_cible = 'index.php';
@@ -47,8 +38,12 @@ if(isset($_GET['login']) && $_GET['login'] == "try" && isset($_POST['email']) &&
     }
     else
     {
-
+        debug_to_console('No user found');
     }
+}
+else
+{
+    debug_to_console('Miss some entries');
 }
 
 //display the page

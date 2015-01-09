@@ -13,7 +13,7 @@ session_start();
 if(!isset($_SESSION['ID']) or is_null($_SESSION['ID']))
 {
     //if NO, then redirect to login page
-    $host = $_SERVER['HTTP_HOST']."/"._SITEWEBFOLDER_;
+    $host = $_SERVER['HTTP_HOST']._SITEWEBFOLDER_;
     $page_cible = 'index.php?page=login';
     header("Location: http://$host/$page_cible");
     exit;

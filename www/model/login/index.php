@@ -8,7 +8,7 @@
 
 // todo Passer en POO
 
-function get_user_data($userEmail, $userPassword)
+function is_loggable($userEmail, $userPassword)
 {
     //database connexion has already been, get here the given object
     global $bdd;
@@ -19,7 +19,7 @@ function get_user_data($userEmail, $userPassword)
     //Execute query with prepared data
     $reponse->execute(array('email' => $userEmail, 'password' => $userPassword));
 
-    $donnees = $reponse->fetchAll();
+    $donnees = $reponse->fetchAll(PDO::FETCH_ASSOC);
 
     return $donnees;
 }

@@ -6,6 +6,9 @@
  * Time: 07:58
  */
 
+//load helpers
+require_once('../app/helpers/debugTools.php');
+
 //load config params
 require_once('config/index.php');
 
@@ -22,7 +25,7 @@ include 'controller/login/index.php';
 elseif (!empty($_GET['page']) && is_file('controller/'.$_GET['page'].'/index.php') && $_GET['page'] !== 'index')
 {
     //try to load session if exists, else redirect to login
-    require_once('controller/handle_session.php');
+    require_once('controller/user/handle_session.php');
 
 
     //display content
@@ -44,23 +47,22 @@ elseif (!empty($_GET['page']) && is_file('controller/'.$_GET['page'].'/index.php
 else //else, display home page
 {
     //try to load session if exists, else redirect to login
-    require_once('controller/handle_session.php');
-
+    require_once('controller/user/handle_session.php');
 
     //display content
 
     //call common header
-    include_once('controller/commonHead/index.php');
+    require_once('controller/commonHead/index.php');
     //call navbar
-    include_once('controller/commonNavbar/index.php');
+    require_once('controller/commonNavbar/index.php');
     //call top bar
-    include_once('controller/commonTopbar/index.php');
+    require_once('controller/commonTopbar/index.php');
 
     //call homepage
-    include_once('controller/home/index.php');
+    require_once('controller/home/index.php');
 
     //call common footer (javascript)
-    include_once('controller/commonFooter/index.php');
+    require_once('controller/commonFooter/index.php');
 }
 
 mysql_close();
