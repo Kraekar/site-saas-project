@@ -55,4 +55,8 @@ class User {
         corpo_id = ".$this->corpo_id."<br>
         function = ".$this->function."<br></em>";
     }
+    public function getFullName()
+    {
+        return $this->firstName . " " . $this->lastName;
+    }
 }

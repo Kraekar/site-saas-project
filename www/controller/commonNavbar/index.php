@@ -8,7 +8,8 @@
 
 require_once('controller/user/User.class.php');
 
-$user = new \user\User($_SESSION['id']);
+//construct user from ID in session
+$user = new \user\User($_SESSION['ID']);
 
 //display navbar
 include_once('view/commonNavbar/index.phtml');
