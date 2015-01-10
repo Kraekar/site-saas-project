@@ -31,14 +31,7 @@ class User {
         {
             foreach($donnees as $key => $donnee)
             {
-                /*$this->id = cleanData("output", $donnee['ID']);
-                $this->email = cleanData("output", $donnee['email']);
-                $this->pseudo = cleanData("output", $donnee['pseudo']);
-                $this->firstName = cleanData("output", $donnee['firstName']);
-                $this->lastName = cleanData("output", $donnee['lastName']);
-                $this->corpo_id = cleanData("output", $donnee['corpo_id']);
-                $this->function = cleanData("output", $donnee['function']);*/
-
+                //cleanData with output mode does nl2br(htmlentities)
                 $this->userData['id'] = cleanData("output", $donnee['ID']);
                 $this->userData['email'] = cleanData("output", $donnee['email']);
                 $this->userData['pseudo'] = cleanData("output", $donnee['pseudo']);
