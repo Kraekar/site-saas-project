@@ -20,6 +20,8 @@ class User {
     protected $corpo_id;
     protected $function;
 
+    protected $userData = array();
+
     public function __construct($id)
     {
         $donnees = get_user_data($id);
@@ -29,13 +31,21 @@ class User {
         {
             foreach($donnees as $key => $donnee)
             {
-                $this->id = $donnee['ID'];
-                $this->email = $donnee['email'];
-                $this->pseudo = $donnee['pseudo'];
-                $this->firstName = $donnee['firstName'];
-                $this->lastName = $donnee['lastName'];
-                $this->corpo_id = $donnee['corpo_id'];
-                $this->function = $donnee['function'];
+                /*$this->id = cleanData("output", $donnee['ID']);
+                $this->email = cleanData("output", $donnee['email']);
+                $this->pseudo = cleanData("output", $donnee['pseudo']);
+                $this->firstName = cleanData("output", $donnee['firstName']);
+                $this->lastName = cleanData("output", $donnee['lastName']);
+                $this->corpo_id = cleanData("output", $donnee['corpo_id']);
+                $this->function = cleanData("output", $donnee['function']);*/
+
+                $this->userData['id'] = cleanData("output", $donnee['ID']);
+                $this->userData['email'] = cleanData("output", $donnee['email']);
+                $this->userData['pseudo'] = cleanData("output", $donnee['pseudo']);
+                $this->userData['firstName'] = cleanData("output", $donnee['firstName']);
+                $this->userData['lastName'] = cleanData("output", $donnee['lastName']);
+                $this->userData['corpo_id'] = cleanData("output", $donnee['corpo_id']);
+                $this->userData['function'] = cleanData("output", $donnee['function']);
             }
         }
         else
@@ -57,6 +67,11 @@ class User {
     }
     public function getFullName()
     {
-        return $this->firstName . " " . $this->lastName;
+        return $this->userData['firstName'] . " " . $this->userData['lastName'];
+    }
+
+    public function __get($name = null)
+    {
+        return $this->userData[$name];
     }
 }

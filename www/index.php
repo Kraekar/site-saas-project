@@ -8,6 +8,7 @@
 
 //load helpers
 require_once('../app/helpers/debugTools.php');
+require_once('../app/helpers/cleanData.php');
 
 //load config params
 require_once('config/index.php');

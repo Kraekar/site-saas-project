@@ -19,5 +19,7 @@ function get_user_data($userId)
 
     $donnees = $reponse->fetchAll(PDO::FETCH_ASSOC);
 
+    //TODO clean data here
+
     return $donnees;
 }
