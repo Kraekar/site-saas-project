@@ -13,12 +13,6 @@ require_once('model/user/get_user_data.php');
 class User {
 
     protected $id;
-    protected $email;
-    protected $pseudo;
-    protected $firstName;
-    protected $lastName;
-    protected $corpo_id;
-    protected $function;
 
     protected $userData = array();
 
@@ -66,5 +60,54 @@ class User {
     public function __get($name = null)
     {
         return $this->userData[$name];
+    }
+
+    public function getProfilePicturePath($size = "orignal")
+    {
+        //get some functions for picture manipulations
+        require_once('../app/helpers/mediaManipulations.php');
+
+        //original profile picture path
+        $ProfileOriginalPicturePath = "medias/pictures/profiles/profile_original_".$this->userData['id'].".jpg";
+
+        switch($size)
+        {
+            case 'small' :
+                $ProfilePicturePath = "medias/pictures/profiles/profile_small_".$this->userData['id'].".jpg";
+                //callback size
+                $sizeHeight = "48";
+                $sizeWidh = "48";
+                break;
+
+            case 'medium' :
+                $ProfilePicturePath = "medias/pictures/profiles/profile_medium_".$this->userData['id'].".jpg";
+                //callback size
+                $sizeHeight = "120";
+                $sizeWidh = "120";
+                break;
+
+            case 'big' :
+                $ProfilePicturePath = "medias/pictures/profiles/profile_big_".$this->userData['id'].".jpg";
+                //callback size
+                $sizeHeight = "240";
+                $sizeWidh = "240";
+                break;
+
+            case 'original' :
+                $ProfilePicturePath = $ProfileOriginalPicturePath;
+                break;
+        }
+
+        //if wanted picture size doesn't exist, then create it from original one
+        if(!file_exists($ProfilePicturePath))
+        {
+            if (true !== ($pic_error = @c_image_resize($ProfileOriginalPicturePath, $ProfilePicturePath, $sizeHeight, $sizeWidh, 1))) {
+                debug_to_console($pic_error);
+            }
+            debug_to_console("Resizing OK");
+        }
+
+        return $ProfilePicturePath;
+
     }
 }

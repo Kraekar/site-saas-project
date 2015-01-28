@@ -18,22 +18,22 @@ if(isset($_GET['login']) && $_GET['login'] == "try" && isset($_POST['email']) &&
     //encrypt password
     $userPassword = sha1($_POST['password']);
     //try to fetch user
-    $donnees = is_loggable($userEmail, $userPassword);
+    $users = is_loggable($userEmail, $userPassword);
 
     //if we found one user, then start session and redirect him on admin homepage
-    if(count($donnees) == 1)
+    if(count($users) == 1)
     {
         //create session
         session_start();
-        foreach($donnees as $key => $donnee)
+        foreach($users as $key => $value)
         {
-            $_SESSION['ID'] = $donnee['ID'];
+            $_SESSION['ID'] = $value['ID'];
             //debug_to_console($donnee);
         }
         /* Redirection to administration home page */
         $host = $_SERVER['HTTP_HOST']."/"._SITEWEBFOLDER_;
-        $page_cible = 'index.php';
-        header("Location: http://$host/$page_cible");
+        $targPage = 'index.php';
+        header("Location: http://$host/$targPage");
         exit;
     }
     else
